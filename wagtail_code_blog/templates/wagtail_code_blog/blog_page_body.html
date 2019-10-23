@@ -1,0 +1,29 @@
+{% load wagtailmarkdown %}
+{% load static %}
+
+<div class="blog-page-content">
+  {% if page.image_url %}
+  <img src="{{ page.image_url }}" alt="Image">
+  {% endif %}
+
+  <div class="blog-page-header">
+    <h1 class="title">{{ page.title }}</h1>
+
+    <div class="post-info-box">
+      <div class="post-info-container">
+        <p class="author-name">{{ page.author_name }}</p>
+        <p class="date">{{ page.date }}</p>
+      </div>
+      {% if author_image %}
+      <div class="profile-image-container">
+        <img src="{{ author_image }}" class="profile-image" alt="Responsive image">
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="post-text">
+    {{ page.body|markdown }}
+  </div>
+</div>
+

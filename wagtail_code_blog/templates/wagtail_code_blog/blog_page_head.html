@@ -1,0 +1,16 @@
+{% load static %}
+{% load wagtailmetadata_tags %}
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=B612+Mono&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather&display=swap">
+
+<link rel="stylesheet" href="{% static 'wagtail_code_blog/css/pygments.css' %}" />
+<link rel="stylesheet" href="{% static 'wagtail_code_blog/css/blog_page.css' %}" />
+<link rel="stylesheet" href="{% static 'wagtail_code_blog/css/markdown_code_blocks.css' %}" />
+
+{% if page.canonical_url %}
+<link rel="canonical" href="{{ page.canonical_url }}">
+{% endif %}
+
+{% meta_tags %}

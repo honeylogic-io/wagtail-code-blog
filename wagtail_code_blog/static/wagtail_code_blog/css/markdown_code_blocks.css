@@ -1,0 +1,20 @@
+/* Multiline inner code block ```code``` */
+.codehilite pre {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 530;
+  padding: 1.1em 0.6em;
+}
+
+/* Inline code blocks, e.g `code` */
+code {
+  font-family: "B612 Mono", monospace;
+  padding: 0.2em 0.3em;
+  border: 1px solid #CCCCCC;
+  border-radius: 3px;
+}
+
+.codehilite * {
+  font-family: "Inconsolata", monospace;
+}
+

@@ -1,0 +1,22 @@
+{% load wagtailcore_tags %}
+
+{% for post in posts %}
+<div class="post">
+  {% if post.image_url %}
+  <a href="{% pageurl post %}">
+    <img src="{{ post.image_url }}" class="img-fluid" alt="Responsive image">
+  </a>
+  {% endif %}
+  <a href="{% pageurl post %}">
+    <div class="post-info-container">
+      <h2 class="post-title">{{ post.title }}</h2>
+      <p class="post-intro">{{ post.intro }}</p>
+      <div class="post-info">
+        <span class="author-name">{{ post.author_name }}</span>
+        <span class="date">{{ post.date }}</span>
+      </div>
+    </div>
+  </a>
+</div>
+<hr>
+{% endfor %}
