@@ -5,17 +5,22 @@ body * {
 
 .post {
   display: flex;
-  flex-direction: row;
-  justify-content: stretch;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin: 0.2rem auto;
 }
 
-.post img {
+.post .img-link {
   margin: 0.4rem;
+  width: 80%;
+  display: flex;
+  align-items: center;
+}
+
+.post img {
   object-fit: cover;
-  border-radius: 10%;
-  width: 10rem;
-  height: 10rem;
+  border-radius: 3%;
 }
 
 .post-info-container {
@@ -75,4 +80,18 @@ hr {
   height: 1px;
   border: none;
   margin-top: 0;
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+  .post {
+    flex-direction: row;
+    justify-content: stretch;
+  }
+
+  .post .img-link {
+    width: 15rem;
+    height: 10rem;
+  }
 }
