@@ -45,7 +45,7 @@ h1 {
 
 .post-info-box {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-top: 2rem;
   margin-right: 1rem;
   margin-bottom: 0;
