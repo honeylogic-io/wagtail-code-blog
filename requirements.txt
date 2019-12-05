@@ -5,7 +5,7 @@ beautifulsoup4==4.6.0
 bleach==2.1.4
 certifi==2019.9.11
 chardet==3.0.4
-Django==2.2.6
+Django==2.2.8
 django-extensions==2.2.5
 django-modelcluster==4.4
 django-taggit==0.24.0
