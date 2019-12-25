@@ -1,0 +1,11 @@
+---
+test:
+  stage: test
+  image: python:3-buster
+  before_script:
+    - curl -sL https://taskfile.dev/install.sh | sh
+    - mv ./bin/task /usr/local/bin
+  script:
+    - pip install -r requirements.txt
+    - task lint
+    - task test

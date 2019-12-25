@@ -1,0 +1,13 @@
+---
+# yamllint disable rule:line-length
+version: '2'
+
+tasks:
+  lint:
+    cmds:
+      - pylint wagtail_code_blog tests
+
+  test:
+    cmds:
+      - ./manage.py migrate
+      - pytest tests
