@@ -1,22 +1,34 @@
 import pytest
 from bs4 import BeautifulSoup
 from django.utils import timezone
-from wagtail.core.models import Site
+from foliage.contextmanagers import page_tree
 
 from wagtail_code_blog.models import BlogIndexPage, BlogPage
 
+pytestmark = pytest.mark.django_db
 
-@pytest.mark.django_db
+
+def test_basic(client):
+    pages = [
+        (BlogIndexPage(title="index"), [BlogPage(title="My post", date=timezone.now())])
+    ]
+    with page_tree(pages):
+        [(index, [post])] = pages
+        res = client.get(index.get_url())
+        assert list(res.context['posts']) == [post]
+
+
 def test_canonical_url(client):
-    site = Site.objects.first()
-    index = BlogIndexPage(title="blog")
-    site.root_page.add_child(instance=index)
     post = BlogPage(
         title="My post", canonical_url="https://foo.com", date=timezone.now()
     )
-    index.add_child(instance=post)
-
-    res = client.get(post.get_url())
-    soup = BeautifulSoup(res.content, "html.parser")
-    el = soup.find("link", attrs={"rel": "canonical"})
-    assert el["href"] == "https://foo.com"
+    pages = [
+        (BlogIndexPage(title="index"), [post])
+    ]
+    with page_tree(pages):
+        [(_, [post])] = pages
+        res = client.get(post.get_url())
+        assert res.status_code == 200
+        soup = BeautifulSoup(res.content, "html.parser")
+        el = soup.find("link", attrs={"rel": "canonical"})
+        assert el["href"] == "https://foo.com"
