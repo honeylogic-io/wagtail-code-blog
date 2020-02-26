@@ -4,12 +4,15 @@ from django.db import models
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.core.models import Page
 from wagtail.search import index
+from wagtail.users.models import UserProfile
 from wagtailmetadata.models import MetadataPageMixin
 
 default_author = "John Doe"
 
 
 class AuthorNameMixin(models.Model):
+    owner = None  # type: UserProfile
+
     def author_name(self):
         if self.owner and self.owner.first_name and self.owner.last_name:
             return self.owner.first_name + " " + self.owner.last_name
@@ -20,7 +23,7 @@ class AuthorNameMixin(models.Model):
         auto_created = True
 
 
-class BlogIndexPage(AuthorNameMixin, Page):
+class BlogIndexPage(Page, AuthorNameMixin):
     page_ptr = models.OneToOneField(
         Page, parent_link=True, related_name="+", on_delete=models.CASCADE
     )
@@ -30,11 +33,13 @@ class BlogIndexPage(AuthorNameMixin, Page):
 
     def get_context(self, request):
         ctx = super().get_context(request)
-        ctx["posts"] = BlogPage.objects.child_of(self).live().order_by("-date")
+        ctx["posts"] = (
+            BlogPage.objects.child_of(self).live().order_by("-date")  # type:ignore
+        )
         return ctx
 
 
-class BlogPage(AuthorNameMixin, MetadataPageMixin, Page):
+class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
     page_ptr = models.OneToOneField(
         Page, parent_link=True, related_name="+", on_delete=models.CASCADE
     )
