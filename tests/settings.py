@@ -3,8 +3,7 @@ from __future__ import absolute_import, unicode_literals
 DEBUG = True
 USE_TZ = True
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "($^zyg#&aw=gjy4et@7hmji0g8otq_pz^+cm@qz^)+t3x)bx8!"
+SECRET_KEY = "very-secret"
 
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "db.sqlite3"}}
 
@@ -36,6 +35,7 @@ INSTALLED_APPS = [
     "taggit",
     # Our app
     "wagtail_code_blog",
+    "tests",
     # Testing
     "django_extensions",
 ]
