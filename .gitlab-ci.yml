@@ -5,7 +5,9 @@ test:
   before_script:
     - curl -sL https://taskfile.dev/install.sh | sh
     - mv ./bin/task /usr/local/bin
+    - pip install poetry
+    - poetry config virtualenvs.create false
+    - poetry install --no-interaction
   script:
-    - pip install -r requirements.txt
     - task lint
     - task test
