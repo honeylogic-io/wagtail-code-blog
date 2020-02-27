@@ -6,12 +6,19 @@
   padding: 1.1em 0.6em;
 }
 
-/* Inline code blocks, e.g `code` */
 code {
   font-family: "B612 Mono", monospace;
-  padding: 0.2em 0.3em;
+  padding: 0.1em 0.1em;
   border: 1px solid #CCCCCC;
   border-radius: 3px;
+}
+
+/* Override the above */
+.codehilite code {
+  font-family: "Inconsolata", monospace;
+  padding: 0;
+  border: none;
+  border-radius: 0;
 }
 
 .codehilite * {
