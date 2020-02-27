@@ -1,4 +1,8 @@
 ---
+cache:
+  paths:
+    - /usr/local/lib/
+
 test:
   stage: test
   image: python:3-buster
