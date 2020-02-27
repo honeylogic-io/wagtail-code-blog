@@ -8,23 +8,36 @@ from wagtail_code_blog.models import BlogIndexPage, BlogPage
 pytestmark = pytest.mark.django_db
 
 
-def test_basic(client):
+def test_blog_index(client):
     pages = [
         (BlogIndexPage(title="index"), [BlogPage(title="My post", date=timezone.now())])
     ]
     with page_tree(pages):
         [(index, [post])] = pages
         res = client.get(index.get_url())
-        assert list(res.context['posts']) == [post]
+        assert res.status_code == 200
+        assert list(res.context["posts"]) == [post]
+
+
+def test_blog_page(client):
+    pages = [
+        (
+            BlogIndexPage(title="index"),
+            [BlogPage(title="My post", date=timezone.now(), body="some text",)],
+        )
+    ]
+    with page_tree(pages):
+        [(_, [post])] = pages
+        res = client.get(post.get_url())
+        assert res.status_code == 200
+        assert res.context['readtime'].text == '1 min'
 
 
 def test_canonical_url(client):
     post = BlogPage(
         title="My post", canonical_url="https://foo.com", date=timezone.now()
     )
-    pages = [
-        (BlogIndexPage(title="index"), [post])
-    ]
+    pages = [(BlogIndexPage(title="index"), [post])]
     with page_tree(pages):
         [(_, [post])] = pages
         res = client.get(post.get_url())
