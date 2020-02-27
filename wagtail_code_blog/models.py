@@ -1,4 +1,5 @@
 # pylint: disable=arguments-differ,too-few-public-methods
+import readtime
 from django import forms
 from django.db import models
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
@@ -67,6 +68,8 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
 
     def get_context(self, request):
         ctx = super().get_context(request)
+        if self.body:
+            ctx["readtime"] = readtime.of_markdown(self.body)
         try:
             ctx["author_image"] = self.owner.wagtail_userprofile.avatar.url
         except AttributeError:
