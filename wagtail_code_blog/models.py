@@ -1,7 +1,9 @@
 # pylint: disable=arguments-differ,too-few-public-methods
 import readtime
+from bs4 import BeautifulSoup
 from django import forms
 from django.db import models
+from markdown import markdown
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.core.models import Page
 from wagtail.search import index
@@ -78,3 +80,29 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
             if ex.args != ("User has no wagtail_userprofile.",):
                 raise ex
         return ctx
+
+    @property
+    def sd(self):
+        data = {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "mainEntity": {"@type": "WebPage", "@id": "https://findwork.dev",},
+            "headline": self.title,
+            "datePublished": self.date,
+            "author": {
+                "@type": "Person",
+                "name": "Dani Hodovic",
+                "url": "https://hodovi.ch",
+            },
+            "publisher": {"@type": "Organization", "name": "Findwork.dev",},
+        }
+
+        if self.body:
+            html = markdown(self.body)
+            text = "".join(BeautifulSoup(html).findAll(text=True))
+            data["articleBody"] = text
+
+        if self.image_url:
+            data["image"] = [self.image_url]
+
+        return data

@@ -11,6 +11,8 @@ pytest-gitignore = "^1.3"
 wagtail-metadata = "^3.0.0"
 django-stubs = "^1.4.0"
 readtime = "^1.1.1"
+beautifulsoup4 = "4.6.0"
+django-json-ld = "^0.0.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.3.5"
@@ -25,6 +27,7 @@ pudb = "^2019.2"
 pylint = "^2.4.4"
 pylint-django = "^2.0.14"
 werkzeug = "^1.0.0"
+wagtail-markdown = {git = "https://github.com/danihodovic/wagtail-markdown.git", rev = "configurable-extensions"}
 
 [build-system]
 requires = ["poetry>=0.12"]

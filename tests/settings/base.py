@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "wagtailmetadata",
     "modelcluster",
     "taggit",
+    'django_json_ld',
     # Our app
     "wagtail_code_blog",
     "tests",
