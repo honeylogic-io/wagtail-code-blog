@@ -1,3 +1,5 @@
+import json
+
 import pytest
 from bs4 import BeautifulSoup
 from django.utils import timezone
@@ -30,7 +32,12 @@ def test_blog_page(client):
         [(_, [post])] = pages
         res = client.get(post.get_url())
         assert res.status_code == 200
-        assert res.context['readtime'].text == '1 min'
+        assert res.context["readtime"].text == "1 min"
+
+        soup = BeautifulSoup(res.content, "html.parser")
+        ld_json = json.loads(soup.find("script").text)
+        assert ld_json["articleBody"] == "some text"
+        assert ld_json["headline"] == "My post"
 
 
 def test_canonical_url(client):

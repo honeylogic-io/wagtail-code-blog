@@ -172,6 +172,14 @@ six = ">=1.2"
 
 [[package]]
 category = "main"
+description = "Django template tag for json-ld"
+name = "django-json-ld"
+optional = false
+python-versions = "*"
+version = "0.0.4"
+
+[[package]]
+category = "main"
 description = "Django extension to allow working with 'clusters' of models as a single unit, independently of the database"
 name = "django-modelcluster"
 optional = false
@@ -768,7 +776,6 @@ testing = ["dj_database_url (0.4.2)"]
 reference = "72f49b5afb7cb55958630f732eaacd2a71e8f93f"
 type = "git"
 url = "https://github.com/danihodovic/wagtail-markdown.git"
-
 [[package]]
 category = "main"
 description = "A tool to assist with metadata for social media."
@@ -838,7 +845,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "a139d11e52cc6522c8c23bb633017ceb726220a3ce74eb7e252b89f6cb368ac5"
+content-hash = "924c6f090d0a54b95e2fbb734f4b237ed49bc7986cfe5e66d3b9ca6b66ad499e"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -902,6 +909,10 @@ django = [
 django-extensions = [
     {file = "django-extensions-2.2.8.tar.gz", hash = "sha256:2699cc1d6fb4bd393c0b5832fea4bc685f2ace5800b3c9ff222b2080f161ac04"},
     {file = "django_extensions-2.2.8-py2.py3-none-any.whl", hash = "sha256:1a03c4e8bade575f8c2be6c76456f8a2be3f9b02ab9f47d3535afa9562dc0493"},
+]
+django-json-ld = [
+    {file = "django-json-ld-0.0.4.tar.gz", hash = "sha256:183d6ffe0758effbec7cfa3f10c8bff22ed0524123aed956d16a200deff4849f"},
+    {file = "django_json_ld-0.0.4-py3-none-any.whl", hash = "sha256:8b67ce8b1254d006c8534b7d27535122c19425c259b26c530bc9691bf087d925"},
 ]
 django-modelcluster = [
     {file = "django-modelcluster-5.0.1.tar.gz", hash = "sha256:6f857bb0251c0982afeb35474aeedb3ec72260df81a0262188df8108067467ba"},
