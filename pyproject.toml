@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wagtail_code_blog"
-version = "0.0.4"
+version = "0.0.5"
 description = ""
 authors = ["Dani Hodovic <dani.hodovic@gmail.com>"]
 
