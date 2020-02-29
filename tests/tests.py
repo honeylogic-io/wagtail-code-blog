@@ -3,8 +3,8 @@ import json
 import pytest
 from bs4 import BeautifulSoup
 from django.utils import timezone
-from foliage.contextmanagers import page_tree
 
+from foliage.contextmanagers import page_tree
 from wagtail_code_blog.models import BlogIndexPage, BlogPage
 
 pytestmark = pytest.mark.django_db

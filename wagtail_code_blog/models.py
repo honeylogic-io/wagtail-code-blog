@@ -1,5 +1,4 @@
 # pylint: disable=arguments-differ,too-few-public-methods
-import readtime
 from bs4 import BeautifulSoup
 from django import forms
 from django.db import models
@@ -8,6 +7,8 @@ from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.core.models import Page
 from wagtail.search import index
 from wagtail.users.models import UserProfile
+
+import readtime
 from wagtailmetadata.models import MetadataPageMixin
 
 default_author = "John Doe"
