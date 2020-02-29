@@ -1,2 +1,6 @@
+include LICENSE
 include README.md
-recursive-include wagtail_code_blog *.html *.png *.gif *js *.css *jpg *jpeg *svg *py
+recursive-include wagtail_code_blog *.html *.css *.py
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .mypy_cache
