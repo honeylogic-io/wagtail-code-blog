@@ -1,15 +1,39 @@
 [tool.poetry]
-name = "wagtail_code_blog"
+name = "wagtail-code-blog"
 version = "0.0.5"
-description = ""
+license = "MIT"
+description = "A wagtail code blog"
 authors = ["Dani Hodovic <dani.hodovic@gmail.com>"]
+readme = "README.md"
+homepage = "https://github.com/honeylogic-io/wagtail-code-blog"
+repository = "https://github.com/honeylogic-io/wagtail-code-blog"
+documentation = "https://github.com/honeylogic-io/wagtail-code-blog"
+keywords = [
+  "wagtail",
+  "django",
+  "blog",
+  "cms"
+]
+
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Web Environment",
+  "Framework :: Django",
+  "Framework :: Django :: 2.2",
+  "Framework :: Django :: 3.0",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+]
 
 [tool.poetry.dependencies]
 python = "^3.7"
 wagtail = "^2.8"
-pytest-gitignore = "^1.3"
 wagtail-metadata = "^3.0.0"
-django-stubs = "^1.4.0"
 readtime = "^1.1.1"
 beautifulsoup4 = "4.6.0"
 django-json-ld = "^0.0.4"
@@ -17,6 +41,8 @@ django-json-ld = "^0.0.4"
 [tool.poetry.dev-dependencies]
 pytest = "^5.3.5"
 pytest-django = "^3.8.0"
+pytest-gitignore = "^1.3"
+django-stubs = "^1.4.0"
 black = "^19.10b0"
 mypy = "^0.761"
 beautifulsoup4 = "^4.6.0"
