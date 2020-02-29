@@ -1,3 +1,7 @@
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
 [tool.poetry]
 name = "wagtail-code-blog"
 version = "0.0.5"
@@ -42,6 +46,8 @@ django-json-ld = "^0.0.4"
 pytest = "^5.3.5"
 pytest-django = "^3.8.0"
 pytest-gitignore = "^1.3"
+pytest-cov = "^2.8.1"
+coverage = "^5.0.2"
 django-stubs = "^1.4.0"
 black = "^19.10b0"
 mypy = "^0.761"
@@ -54,7 +60,3 @@ pylint = "^2.4.4"
 pylint-django = "^2.0.14"
 werkzeug = "^1.0.0"
 wagtail-markdown = {git = "https://github.com/danihodovic/wagtail-markdown.git", rev = "configurable-extensions"}
-
-[build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
