@@ -12,7 +12,10 @@ pytestmark = pytest.mark.django_db
 
 def test_blog_index(client):
     pages = [
-        (BlogIndexPage(title="index"), [BlogPage(title="My post", date=timezone.now())])
+        (
+            BlogIndexPage(title="index"),
+            [BlogPage(title="My post", body="some text", date=timezone.now())],
+        )
     ]
     with page_tree(pages):
         [(index, [post])] = pages
@@ -32,7 +35,7 @@ def test_blog_page(client):
         [(_, [post])] = pages
         res = client.get(post.get_url())
         assert res.status_code == 200
-        assert res.context["readtime"].text == "1 min"
+        assert post.readtime.text == "1 min"
 
         soup = BeautifulSoup(res.content, "html.parser")
         ld_json = json.loads(soup.find("script").text)
@@ -42,7 +45,10 @@ def test_blog_page(client):
 
 def test_canonical_url(client):
     post = BlogPage(
-        title="My post", canonical_url="https://foo.com", date=timezone.now()
+        title="My post",
+        canonical_url="https://foo.com",
+        body="some text",
+        date=timezone.now(),
     )
     pages = [(BlogIndexPage(title="index"), [post])]
     with page_tree(pages):

@@ -51,7 +51,7 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
     image_url = models.URLField(null=True, blank=True)
     date = models.DateField()
     intro = models.CharField(max_length=250, null=True, blank=True)
-    body = models.TextField(null=True, blank=True)
+    body = models.TextField(default="")
     canonical_url = models.URLField(null=True, blank=True)
 
     @property
