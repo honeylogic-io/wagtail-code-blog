@@ -21,6 +21,10 @@ img {
   font-family: "Merriweather", serif;
 }
 
+.post-info {
+  width: 100%;
+}
+
 .post-title {
   font-size: 2rem;
 }
@@ -29,8 +33,13 @@ img {
   margin-top: 0.5rem;
 }
 
-.author-name, .date {
+.post-detail {
   margin-bottom: 0;
+}
+
+.post-readtime {
+  color: black;
+  float: right;
 }
 
 a {

@@ -51,8 +51,12 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
     image_url = models.URLField(null=True, blank=True)
     date = models.DateField()
     intro = models.CharField(max_length=250, null=True, blank=True)
-    body = models.TextField(null=True, blank=True)
+    body = models.TextField(default="")
     canonical_url = models.URLField(null=True, blank=True)
+
+    @property
+    def readtime(self):
+        return readtime.of_markdown(self.body)
 
     search_fields = Page.search_fields + [
         index.SearchField("intro"),
@@ -70,8 +74,6 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
 
     def get_context(self, request):
         ctx = super().get_context(request)
-        if self.body:
-            ctx["readtime"] = readtime.of_markdown(self.body)
         try:
             ctx["author_image"] = self.owner.wagtail_userprofile.avatar.url
         except AttributeError:

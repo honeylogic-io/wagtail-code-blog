@@ -7,13 +7,15 @@
     <img src="{{ post.image_url }}" alt="{{ post.title }}">
   </a>
   {% endif %}
-  <a href="{% pageurl post %}">
+  <a class="post-info" href="{% pageurl post %}">
     <h2 class="post-title">{{ post.title }}</h2>
     {% if post.intro %}
     <p class="post-intro">{{ post.intro }}</p>
     {% endif %}
-    <p class="author-name"><b>{{ post.author_name }}</b></p>
-    <p class="date">{{ post.date }}</p>
+    <p class="post-detail"><b>{{ post.author_name }}</b></p>
+    <p class="date post-detail">{{ post.date }}
+      <span class="post-readtime">{{ post.readtime }}</span>
+    </p>
   </a>
 </div>
 <hr />
