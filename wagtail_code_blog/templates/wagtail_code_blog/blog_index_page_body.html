@@ -4,21 +4,17 @@
 <div class="post">
   {% if post.image_url %}
   <a class="img-link" href="{% pageurl post %}">
-    <img src="{{ post.image_url }}" class="img-fluid" alt="Responsive image">
+    <img src="{{ post.image_url }}" alt="{{ post.title }}">
   </a>
   {% endif %}
   <a href="{% pageurl post %}">
-    <div class="post-info-container">
-      <h2 class="post-title">{{ post.title }}</h2>
-      {% if post.intro %}
-      <p class="post-intro">{{ post.intro }}</p>
-      {% endif %}
-      <div class="post-info">
-        <span class="author-name">{{ post.author_name }}</span>
-        <span class="date">{{ post.date }}</span>
-      </div>
-    </div>
+    <h2 class="post-title">{{ post.title }}</h2>
+    {% if post.intro %}
+    <p class="post-intro">{{ post.intro }}</p>
+    {% endif %}
+    <p class="author-name"><b>{{ post.author_name }}</b></p>
+    <p class="date">{{ post.date }}</p>
   </a>
 </div>
-<hr>
+<hr />
 {% endfor %}
