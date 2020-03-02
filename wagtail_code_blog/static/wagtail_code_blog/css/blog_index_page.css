@@ -1,48 +1,21 @@
-body * {
-  font-weight: 400;
-  line-height: 1.5;
+.post {
+  padding: 1rem;
 }
 
-.post {
+.img-link {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0.2rem auto;
+  margin-bottom: 1.5rem;
 }
 
-.post .img-link {
-  margin: 0.4rem;
-  width: 80%;
-  display: flex;
-  align-items: center;
-}
-
-.post img {
-  object-fit: cover;
-  border-radius: 3%;
-}
-
-.post-info-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-left: 1rem;
-}
-
-.post-info-container h2 {
-  margin-bottom: 0;
-  margin-top: 0.5rem;
-}
-
-.author-name {
-  font-weight: bold;
+img {
+  width: 100%;
 }
 
 .date {
   color: #6C757D;
 }
-
 
 .post * {
   font-family: "Merriweather", serif;
@@ -53,45 +26,47 @@ body * {
 }
 
 .post-intro {
-  margin: 0.5rem;
+  margin-top: 0.5rem;
 }
 
-.post-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+.author-name, .date {
+  margin-bottom: 0;
 }
 
-.post-info span {
-  margin: 0 0.5rem;
-}
-
-.post a {
+a {
   color: black;
   text-decoration: none;
 }
 
-.post a:hover {
-  text-decoration: none;
+a:hover {
+  color: #484848;
 }
 
 hr {
   background-color: #989898;
   height: 1px;
   border: none;
-  margin-top: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
 
   .post {
+    display: flex;
+    align-items: center;
     flex-direction: row;
     justify-content: stretch;
   }
 
-  .post .img-link {
-    width: 15rem;
-    height: 10rem;
+  .img-link {
+    margin-bottom: 0rem;
+    margin-right: 1.5rem;
+    width: 240px;
+  }
+
+  img {
+    width: 240px;
   }
 }
