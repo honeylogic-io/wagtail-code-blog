@@ -8,14 +8,21 @@
   </a>
   {% endif %}
   <a class="post-info" href="{% pageurl post %}">
-    <h2 class="post-title">{{ post.title }}</h2>
+    <h3 class="post-title">{{ post.title }}</h3>
     {% if post.intro %}
-    <p class="post-intro">{{ post.intro }}</p>
+    <p class="post-intro">{{ post.intro|truncatewords:30 }}</p>
     {% endif %}
-    <p class="post-detail"><b>{{ post.author_name }}</b></p>
-    <p class="date post-detail">{{ post.date }}
-      <span class="post-readtime">{{ post.readtime }}</span>
-    </p>
+    <div class="post-content">
+      {% if post.author_image %}
+      <img src="{{ post.author_image }}" alt="Avatar">
+      {% endif %}
+      <div class="post-detail">
+        <p class="post-detail-text"><b>{{ post.author_name }}</b></p>
+        <p class="post-date">{{ post.date }}
+          <span class="post-readtime">{{ post.readtime }}</span>
+        </p>
+      </div>
+    </div>
   </a>
 </div>
 <hr />
