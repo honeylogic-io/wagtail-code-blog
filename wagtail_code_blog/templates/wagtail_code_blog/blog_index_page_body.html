@@ -1,5 +1,16 @@
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
+{% if page.heading and page.image %}
+<div class="intro-container" style="background-color: {{ page.background_color }}">
+  <div class="intro">
+    {% image page.image original %}
+    <div class="intro-info">
+      <h1>{{ page.heading }}</h1>
+      <small>{{ page.description }}</small>
+    </div>
+  </div>
+</div>
+{% endif %}
 {% for post in posts %}
 <div class="post">
   {% if post.image_url %}
@@ -10,11 +21,11 @@
   <a class="post-info" href="{% pageurl post %}">
     <h3 class="post-title">{{ post.title }}</h3>
     {% if post.intro %}
-    <p class="post-intro">{{ post.intro|truncatewords:30 }}</p>
+    <p class="post-intro-text">{{ post.intro|truncatewords:30 }}</p>
     {% endif %}
     <div class="post-content">
-      {% if post.author_image %}
-      <img src="{{ post.author_image }}" alt="Avatar">
+      {% if post.owner.wagtail_userprofile.avatar.url %}
+      <img src="{{ post.owner.wagtail_userprofile.avatar.url }}" alt="Avatar">
       {% endif %}
       <div class="post-detail">
         <p class="post-detail-text"><b>{{ post.author_name }}</b></p>
