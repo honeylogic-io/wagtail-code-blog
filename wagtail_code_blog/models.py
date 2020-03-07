@@ -6,6 +6,8 @@ from django.db import models
 from markdown import markdown
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.core.models import Page
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.images.models import Image
 from wagtail.search import index
 from wagtail.users.models import UserProfile
 from wagtailmetadata.models import MetadataPageMixin
@@ -30,9 +32,22 @@ class BlogIndexPage(Page, AuthorNameMixin):
     page_ptr = models.OneToOneField(
         Page, parent_link=True, related_name="+", on_delete=models.CASCADE
     )
+
+    heading = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    background_color = models.CharField(max_length=50, null=True, blank=True)
+    image = models.ForeignKey(
+        Image, null=True, blank=True, on_delete=models.SET_NULL, related_name="+"
+    )
+
     subpage_types = ["wagtail_code_blog.BlogPage"]
 
-    content_panels = Page.content_panels
+    content_panels = Page.content_panels + [
+        FieldPanel("heading"),
+        FieldPanel("description"),
+        FieldPanel("background_color"),
+        ImageChooserPanel("image"),
+    ]
 
     def get_context(self, request):
         ctx = super().get_context(request)
