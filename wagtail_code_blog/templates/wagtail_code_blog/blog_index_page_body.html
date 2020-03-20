@@ -1,7 +1,7 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% if page.heading and page.image %}
-<div class="intro-container" style="background-color: {{ page.background_color }}">
+<div class="intro-container" style="background: {{ page.background_color }}">
   <div class="intro">
     {% image page.image original %}
     <div class="intro-info">
