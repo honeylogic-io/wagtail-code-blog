@@ -35,7 +35,7 @@ class BlogIndexPage(Page, AuthorNameMixin):
 
     heading = models.TextField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
-    background_color = models.CharField(max_length=50, null=True, blank=True)
+    background_color = models.CharField(max_length=250, null=True, blank=True)
     image = models.ForeignKey(
         Image, null=True, blank=True, on_delete=models.SET_NULL, related_name="+"
     )
