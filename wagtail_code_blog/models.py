@@ -28,7 +28,7 @@ class AuthorNameMixin(models.Model):
         auto_created = True
 
 
-class BlogIndexPage(Page, AuthorNameMixin):
+class BlogIndexPage(MetadataPageMixin, Page, AuthorNameMixin):
     page_ptr = models.OneToOneField(
         Page, parent_link=True, related_name="+", on_delete=models.CASCADE
     )
@@ -89,6 +89,28 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
 
     def get_context(self, request):
         ctx = super().get_context(request)
+        sd = {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "mainEntity": {"@type": "WebPage", "@id": request.site.hostname,},
+            "headline": self.title,
+            "datePublished": self.date,
+            "author": {"@type": "Person", "name": self.author_name(),},
+            "publisher": {"@type": "Organization", "name": request.site.site_name,},
+        }
+
+        if self.body:
+            html = markdown(self.body)
+            text = "".join(BeautifulSoup(html).findAll(text=True))
+            sd["articleBody"] = text
+
+        if self.search_image:
+            rendition = self.search_image.get_rendition(  # pylint: disable=no-member
+                filter="original"
+            )
+            sd["image"] = [request.build_absolute_uri(rendition.url)]
+
+        ctx["page_sd"] = sd
         try:
             ctx["author_image"] = self.owner.wagtail_userprofile.avatar.url
         except AttributeError:
@@ -97,29 +119,3 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
             if ex.args != ("User has no wagtail_userprofile.",):
                 raise ex
         return ctx
-
-    @property
-    def sd(self):
-        data = {
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "mainEntity": {"@type": "WebPage", "@id": "https://findwork.dev",},
-            "headline": self.title,
-            "datePublished": self.date,
-            "author": {
-                "@type": "Person",
-                "name": "Dani Hodovic",
-                "url": "https://hodovi.ch",
-            },
-            "publisher": {"@type": "Organization", "name": "Findwork.dev",},
-        }
-
-        if self.body:
-            html = markdown(self.body)
-            text = "".join(BeautifulSoup(html).findAll(text=True))
-            data["articleBody"] = text
-
-        if self.image_url:
-            data["image"] = [self.image_url]
-
-        return data
