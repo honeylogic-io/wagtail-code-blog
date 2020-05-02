@@ -100,10 +100,12 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
         sd = {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
-            "mainEntity": {"@type": "WebPage", "@id": request.site.hostname,},
             "headline": self.title,
             "datePublished": self.date,
         }
+
+        if "localhost" not in request.site.hostname:
+            sd["mainEntity"] = ({"@type": "WebPage", "@id": request.site.hostname,},)
 
         if request.site.site_name:
             sd["publisher"] = (
