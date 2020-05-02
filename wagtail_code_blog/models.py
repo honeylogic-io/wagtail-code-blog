@@ -28,7 +28,7 @@ class AuthorNameMixin(models.Model):
         auto_created = True
 
 
-class BlogIndexPage(Page, AuthorNameMixin):
+class BlogIndexPage(MetadataPageMixin, Page, AuthorNameMixin):
     page_ptr = models.OneToOneField(
         Page, parent_link=True, related_name="+", on_delete=models.CASCADE
     )
@@ -96,30 +96,34 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
         except Exception as ex:  # pylint: disable=broad-except
             if ex.args != ("User has no wagtail_userprofile.",):
                 raise ex
-        return ctx
 
-    @property
-    def sd(self):
-        data = {
+        sd = {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
-            "mainEntity": {"@type": "WebPage", "@id": "https://findwork.dev",},
+            "mainEntity": {"@type": "WebPage", "@id": request.site.hostname,},
             "headline": self.title,
             "datePublished": self.date,
-            "author": {
-                "@type": "Person",
-                "name": "Dani Hodovic",
-                "url": "https://hodovi.ch",
-            },
-            "publisher": {"@type": "Organization", "name": "Findwork.dev",},
         }
+
+        if request.site.site_name:
+            sd["publisher"] = (
+                {"@type": "Organization", "name": request.site.site_name,},
+            )
+
+        if self.author_name() is not default_author:
+            sd["author"] = ({"@type": "Person", "name": self.author_name(),},)
 
         if self.body:
             html = markdown(self.body)
             text = "".join(BeautifulSoup(html).findAll(text=True))
-            data["articleBody"] = text
+            sd["articleBody"] = text
 
-        if self.image_url:
-            data["image"] = [self.image_url]
+        if self.search_image:
+            rendition = self.search_image.get_rendition(  # pylint: disable=no-member
+                filter="original"
+            )
+            sd["image"] = [request.build_absolute_uri(rendition.url)]
 
-        return data
+        ctx["page_sd"] = sd
+
+        return ctx
