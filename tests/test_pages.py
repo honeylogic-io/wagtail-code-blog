@@ -38,9 +38,10 @@ def test_blog_page(client):
         assert post.readtime.text == "1 min"
 
         soup = BeautifulSoup(res.content, "html.parser")
-        ld_json = json.loads(soup.find("script").text)
+        ld_json = json.loads(soup.find("script").string)
         assert ld_json["articleBody"] == "some text"
         assert ld_json["headline"] == "My post"
+        assert ld_json["mainEntity"] == {"@id": "localhost", "@type": "WebPage"}
 
 
 def test_canonical_url(client):
