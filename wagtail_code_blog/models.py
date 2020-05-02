@@ -89,15 +89,29 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
 
     def get_context(self, request):
         ctx = super().get_context(request)
+        try:
+            ctx["author_image"] = self.owner.wagtail_userprofile.avatar.url
+        except AttributeError:
+            pass
+        except Exception as ex:  # pylint: disable=broad-except
+            if ex.args != ("User has no wagtail_userprofile.",):
+                raise ex
+
         sd = {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             "mainEntity": {"@type": "WebPage", "@id": request.site.hostname,},
             "headline": self.title,
             "datePublished": self.date,
-            "author": {"@type": "Person", "name": self.author_name(),},
-            "publisher": {"@type": "Organization", "name": request.site.site_name,},
         }
+
+        if request.site.site_name:
+            sd["publisher"] = (
+                {"@type": "Organization", "name": request.site.site_name,},
+            )
+
+        if self.author_name() is not default_author:
+            sd["author"] = ({"@type": "Person", "name": self.author_name(),},)
 
         if self.body:
             html = markdown(self.body)
@@ -111,11 +125,5 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
             sd["image"] = [request.build_absolute_uri(rendition.url)]
 
         ctx["page_sd"] = sd
-        try:
-            ctx["author_image"] = self.owner.wagtail_userprofile.avatar.url
-        except AttributeError:
-            pass
-        except Exception as ex:  # pylint: disable=broad-except
-            if ex.args != ("User has no wagtail_userprofile.",):
-                raise ex
+
         return ctx
