@@ -100,18 +100,29 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
         sd = {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
-            "mainEntity": {"@type": "WebPage", "@id": request.site.hostname,},
+            "mainEntity": {
+                "@type": "WebPage",
+                "@id": request.site.hostname,
+            },
             "headline": self.title,
             "datePublished": self.date,
         }
 
         if request.site.site_name:
             sd["publisher"] = (
-                {"@type": "Organization", "name": request.site.site_name,},
+                {
+                    "@type": "Organization",
+                    "name": request.site.site_name,
+                },
             )
 
         if self.author_name() is not default_author:
-            sd["author"] = ({"@type": "Person", "name": self.author_name(),},)
+            sd["author"] = (
+                {
+                    "@type": "Person",
+                    "name": self.author_name(),
+                },
+            )
 
         if self.body:
             html = markdown(self.body)
