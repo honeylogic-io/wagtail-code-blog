@@ -1,9 +1,8 @@
 import json
 
+import pytest
 from bs4 import BeautifulSoup
 from django.utils import timezone
-
-import pytest
 from foliage.contextmanagers import page_tree
 
 from wagtail_code_blog.models import BlogIndexPage, BlogPage  # isort:skip
