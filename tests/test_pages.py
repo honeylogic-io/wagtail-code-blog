@@ -29,7 +29,13 @@ def test_blog_page(client):
     pages = [
         (
             BlogIndexPage(title="index"),
-            [BlogPage(title="My post", date=timezone.now(), body="some text",)],
+            [
+                BlogPage(
+                    title="My post",
+                    date=timezone.now(),
+                    body="some text",
+                )
+            ],
         )
     ]
     with page_tree(pages):
