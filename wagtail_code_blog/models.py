@@ -2,6 +2,7 @@
 import readtime
 from bs4 import BeautifulSoup
 from django import forms
+from django.contrib.sites.models import Site
 from django.db import models
 from markdown import markdown
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
@@ -89,6 +90,7 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
 
     def get_context(self, request):
         ctx = super().get_context(request)
+        site = Site.objects.get_current()
         try:
             ctx["author_image"] = self.owner.wagtail_userprofile.avatar.url
         except AttributeError:
@@ -102,17 +104,17 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
             "@type": "BlogPosting",
             "mainEntity": {
                 "@type": "WebPage",
-                "@id": request.site.hostname,
+                "@id": site.domain,
             },
             "headline": self.title,
             "datePublished": self.date,
         }
 
-        if request.site.site_name:
+        if site.name:
             sd["publisher"] = (
                 {
                     "@type": "Organization",
-                    "name": request.site.site_name,
+                    "name": site.name,
                 },
             )
 
@@ -126,7 +128,7 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
 
         if self.body:
             html = markdown(self.body)
-            text = "".join(BeautifulSoup(html).findAll(text=True))
+            text = "".join(BeautifulSoup(html, "html.parser").findAll(text=True))
             sd["articleBody"] = text
 
         if self.search_image:
