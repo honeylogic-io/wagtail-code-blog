@@ -4,7 +4,7 @@ build-backend = "poetry.masonry.api"
 
 [tool.poetry]
 name = "wagtail-code-blog"
-version = "0.0.13"
+version = "0.1.0"
 license = "MIT"
 description = "A wagtail code blog"
 authors = ["Dani Hodovic <dani.hodovic@gmail.com>"]
@@ -23,15 +23,13 @@ classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Environment :: Web Environment",
   "Framework :: Django",
-  "Framework :: Django :: 2.2",
-  "Framework :: Django :: 3.0",
+  "Framework :: Django :: 3.1",
   "Intended Audience :: Developers",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.7",
-  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
 ]
 
 [tool.poetry.dependencies]
