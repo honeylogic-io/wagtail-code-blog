@@ -47,7 +47,7 @@ def test_blog_page(client):
         ld_json = json.loads(soup.find("script").string)
         assert ld_json["articleBody"] == "some text"
         assert ld_json["headline"] == "My post"
-        assert ld_json["mainEntity"] == {"@id": "localhost", "@type": "WebPage"}
+        assert ld_json["mainEntity"] == {"@id": "example.com", "@type": "WebPage"}
 
 
 def test_canonical_url(client):
