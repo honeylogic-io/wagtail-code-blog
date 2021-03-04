@@ -126,7 +126,7 @@ class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
 
         if self.body:
             html = markdown(self.body)
-            text = "".join(BeautifulSoup(html).findAll(text=True))
+            text = "".join(BeautifulSoup(html, "html.parser").findAll(text=True))
             sd["articleBody"] = text
 
         if self.search_image:
