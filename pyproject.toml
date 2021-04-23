@@ -40,8 +40,6 @@ readtime = "^1.1.1"
 beautifulsoup4 = "4.8"
 django-json-ld = "^0.0.4"
 django-model-utils = "^4.0.0"
-pylint = "2.7.2"
-black = "20.8b1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.3.5"
