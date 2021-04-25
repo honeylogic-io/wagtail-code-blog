@@ -65,3 +65,19 @@ def test_canonical_url(client):
         soup = BeautifulSoup(res.content, "html.parser")
         el = soup.find("link", attrs={"rel": "canonical"})
         assert el["href"] == "https://foo.com"
+
+
+def test_renders_toc(client):
+    post = BlogPage(
+        title="My post",
+        body="""
+[TOC]
+# first paragraph""",
+        date=timezone.now(),
+    )
+    pages = [(BlogIndexPage(title="index"), [post])]
+    with page_tree(pages):
+        [(_, [post])] = pages
+        res = client.get(post.get_url())
+    assert res.status_code == 200
+    assert BeautifulSoup(res.content, "html.parser").select(".toc")
