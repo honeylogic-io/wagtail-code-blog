@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .blog-text h2 {
+    @apply text-3xl;
+  }
+  .blog-text h3 {
+    @apply text-2xl;
+  }
+  .blog-text h4 {
+    @apply text-xl;
+  }
+  .blog-text h5 {
+    @apply text-lg;
+  }
+  .blog-text ol, ul, p {
+    @apply p-0 mb-4 tracking-tight leading-7;
+  }
+
+  .blog-text > ol, ul {
+    @apply ml-4;
+  }
+
+  .blog-text li {
+    @apply mx-0 my-1 list-disc;
+  }
+
+  .blog-text a {
+    @apply font-semibold border-b border-blue-900 border-dotted text-sky-600 hover:border-b-2 transition-all;
+  }
+
+  .blog-text > *:not(code) {
+    @apply px-4;
+  }
+
+  .blog-text .codehilite {
+    @apply my-5 md:rounded-lg;
+  }
+
+  .blog-text .codehilite pre {
+    @apply overflow-auto;
+  }
+
+  .blog-text strong {
+    @apply font-semibold tracking-tighter leading-6 text-stone-800;
+  }
+
+  blockquote {
+    border-left: 3px solid #322B3E;
+    color: #1a1a1a;
+    font-size: 1.1em;
+    font-style: italic;
+    line-height: 1.4em;
+    margin: 1.1em 1em;
+    padding: 1em 2em;
+    position: relative;
+    z-index: 0;
+  }
+
+  @media (min-width: 992px) {
+    /* Fancy block quotes don't work on mobile */
+    blockquote {
+      border-left: 0;
+      color: none;
+    }
+
+    blockquote:after {
+      content: "\f10d";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      font-style: normal;
+      position: absolute;
+      top: 50%;
+      left: -0.5em;
+      color: #322B3E;
+      line-height: 1em;
+      text-align: center;
+      text-indent: -2px;
+      width: 1em;
+      margin-top: -0.5em;
+    }
+  }
+}

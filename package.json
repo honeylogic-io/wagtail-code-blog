@@ -1,0 +1,32 @@
+{
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/line-clamp": "^0.3.1",
+    "@tailwindcss/typography": "^0.5.1",
+    "tailwind": "^4.0.0",
+    "tailwindcss": "^3.0.19"
+  },
+  "name": "wagtail-code-blog",
+  "description": "Built with wagtail-code-blog:",
+  "version": "0.0.1",
+  "main": "tailwind.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tailwindcss -i wagtail_code_blog/static/wagtail_code_blog/input.css -o wagtail_code_blog/static/wagtail_code_blog/output.css --minify",
+    "build:watch": "npx tailwindcss -i wagtail_code_blog/static/wagtail_code_blog/input.css -o wagtail_code_blog/static/wagtail_code_blog/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/honeylogic-io/wagtail-code-blog.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/honeylogic-io/wagtail-code-blog/issues"
+  },
+  "homepage": "https://github.com/honeylogic-io/wagtail-code-blog#readme"
+}
