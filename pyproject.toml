@@ -34,7 +34,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.9.1"
+python = ">=3.8"
 wagtail = "^2.10"
 wagtail-metadata = "^3.0.0"
 readtime = "^1.1.1"
