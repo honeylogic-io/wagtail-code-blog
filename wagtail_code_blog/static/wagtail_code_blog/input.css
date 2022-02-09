@@ -3,17 +3,20 @@
 @tailwind utilities;
 
 @layer components {
+  .blog-text h2, h3, h4, h5 {
+    @apply mt-4 mb-1;
+  }
   .blog-text h2 {
-    @apply text-3xl;
+    @apply text-xl md:text-3xl;
   }
   .blog-text h3 {
-    @apply text-2xl;
+    @apply text-lg md:text-2xl;
   }
   .blog-text h4 {
-    @apply text-xl;
+    @apply font-semibold md:font-normal md:text-xl;
   }
   .blog-text h5 {
-    @apply text-lg;
+    @apply text-lg font-medium md:font-normal;
   }
   .blog-text ol, ul, p {
     @apply p-0 mb-4 tracking-tight leading-7;
