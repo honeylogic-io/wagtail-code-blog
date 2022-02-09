@@ -1,29 +1,27 @@
 {% load wagtailmarkdown %}
-{% load static %}
 
-<div class="blog-page-content">
+<div class="flex flex-col items-center w-full sm:text-sm md:text-base md:w-10/12 xl:w-9/12 text-stone-800">
   {% if page.image_url %}
   <img src="{{ page.image_url }}" alt="Image">
   {% endif %}
-
-  <div class="blog-page-header">
-    <h1 class="title">{{ page.title }}</h1>
-
-    <div class="post-info-box">
-      <div class="post-info-container">
-        <p class="author-name">{{ page.author_name }}</p>
-        <p class="date">{{ page.date }}</p>
-        <p class="readtime">{{ page.readtime }}</p>
+  <h1 class="mt-4 text-4xl font-semibold tracking-tighter md:text-6xl">{{ page.title }}</h1>
+  <div class="flex justify-end mt-4 mb-4 md:w-10/12 xl:w-8/12">
+    <div class="flex items-center mr-3 md:mr-20">
+      <div class="flex flex-col items-center justify-center my-6 ">
+        <span class="font-semibold">{{ page.author_name }}</span>
+        <span class="text-sm text-stone-500">{{ page.date }}</span>
+        <span class="text-sm text-stone-500">{{ page.readtime }}</span>
       </div>
       {% if author_image %}
-      <div class="profile-image-container">
-        <img src="{{ author_image }}" class="profile-image" alt="Responsive image">
+      <div class="ml-3">
+        <img src="{{ author_image }}" class="object-scale-down w-8 rounded-2xl md:w-16 xl:w-20" alt="Responsive image">
       </div>
       {% endif %}
     </div>
   </div>
+  <hr class="w-10/12 mb-4 border-b-2 md:w-8/12">
 
-  <div class="post-text">
+  <div class="flex flex-col justify-center w-full font-sans blog-text md:w-10/12 xl:w-8/12">
     {{ page.body|markdown }}
   </div>
 </div>
