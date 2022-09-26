@@ -15,7 +15,7 @@ jobs:
       max-parallel: 3
       matrix:
         python-version: [3.9]
-        dj-version: [django31]
+        dj-version: [django40]
 
     steps:
       - uses: actions/checkout@v1
