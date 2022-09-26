@@ -233,7 +233,7 @@ Django = ">=2.2"
 
 [[package]]
 name = "django-json-ld"
-version = "0.0.4"
+version = "0.0.5"
 description = "Django template tag for json-ld"
 category = "main"
 optional = false
@@ -1124,7 +1124,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<4.0"
-content-hash = "afa926734743ac408327202d93f8cad2dd11fd39d22630b7af40a320a2033204"
+content-hash = "edf501de69c43e393ef42a198608b0e15e7ffe2f4a46d55f1af9cb6ad3a48aef"
 
 [metadata.files]
 anyascii = [
@@ -1279,8 +1279,8 @@ django-filter = [
     {file = "django_filter-21.1-py3-none-any.whl", hash = "sha256:f4a6737a30104c98d2e2a5fb93043f36dd7978e0c7ddc92f5998e85433ea5063"},
 ]
 django-json-ld = [
-    {file = "django-json-ld-0.0.4.tar.gz", hash = "sha256:183d6ffe0758effbec7cfa3f10c8bff22ed0524123aed956d16a200deff4849f"},
-    {file = "django_json_ld-0.0.4-py3-none-any.whl", hash = "sha256:8b67ce8b1254d006c8534b7d27535122c19425c259b26c530bc9691bf087d925"},
+    {file = "django-json-ld-0.0.5.tar.gz", hash = "sha256:c5a33ccdcb697757c5affc88de16892e2d48c4a724e23c48fbf087b2caf0a8a5"},
+    {file = "django_json_ld-0.0.5-py3-none-any.whl", hash = "sha256:4f0d82b002299e457c5329726c0704775bb7433a46dd1ced305bc5de57d962a1"},
 ]
 django-model-utils = [
     {file = "django-model-utils-4.2.0.tar.gz", hash = "sha256:e7a95e102f9c9653427eadab980d5d59e1dea972913b9c9e01ac37f86bba0ddf"},
