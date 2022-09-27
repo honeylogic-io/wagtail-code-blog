@@ -202,7 +202,7 @@ bcrypt = ["bcrypt"]
 name = "django-browser-reload"
 version = "1.6.0"
 description = "Automatically reload your browser in development."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -211,14 +211,14 @@ Django = ">=3.2"
 
 [[package]]
 name = "django-extensions"
-version = "2.2.9"
+version = "3.2.1"
 description = "Extensions for Django"
 category = "dev"
 optional = false
-python-versions = "*"
+python-versions = ">=3.6"
 
 [package.dependencies]
-six = ">=1.2"
+Django = ">=3.2"
 
 [[package]]
 name = "django-filter"
@@ -302,6 +302,18 @@ python-versions = ">=3.6"
 
 [package.dependencies]
 Django = ">=2.2"
+
+[[package]]
+name = "django-tailwind"
+version = "3.4.0"
+description = "Tailwind CSS Framework for Django projects"
+category = "main"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[package.dependencies]
+django = ">=3.2.14"
+django-browser-reload = ">=1.6.0,<2.0.0"
 
 [[package]]
 name = "django-treebeard"
@@ -1011,7 +1023,7 @@ test = ["pytest (>=3.5)", "pytest-django (>=3.2)", "pytest-pythonpath (>=0.7.2)"
 
 [[package]]
 name = "wagtail-markdown"
-version = "0.7.0"
+version = "0.9.0"
 description = "Markdown support for Wagtail"
 category = "dev"
 optional = false
@@ -1020,7 +1032,7 @@ python-versions = "*"
 [package.dependencies]
 bleach = ">=3.3.0,<4"
 Markdown = ">=3,<4"
-Wagtail = ">=2.0"
+Wagtail = ">=2.15"
 
 [[package]]
 name = "wagtail-metadata"
@@ -1124,7 +1136,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<4.0"
-content-hash = "edf501de69c43e393ef42a198608b0e15e7ffe2f4a46d55f1af9cb6ad3a48aef"
+content-hash = "cfc61360ae536c10d56ce15b14cb6349861bcfdcd19e8cd270d7e4624cb879b3"
 
 [metadata.files]
 anyascii = [
@@ -1271,8 +1283,8 @@ django-browser-reload = [
     {file = "django_browser_reload-1.6.0-py3-none-any.whl", hash = "sha256:31b8b2d51e8faa5878f21e6b60b8f43e1123907c6e082e9e967962ba63958829"},
 ]
 django-extensions = [
-    {file = "django-extensions-2.2.9.tar.gz", hash = "sha256:2f81b618ba4d1b0e58603e25012e5c74f88a4b706e0022a3b21f24f0322a6ce6"},
-    {file = "django_extensions-2.2.9-py2.py3-none-any.whl", hash = "sha256:b19182d101a441fe001c5753553a901e2ef3ff60e8fbbe38881eb4a61fdd17c4"},
+    {file = "django-extensions-3.2.1.tar.gz", hash = "sha256:2a4f4d757be2563cd1ff7cfdf2e57468f5f931cc88b23cf82ca75717aae504a4"},
+    {file = "django_extensions-3.2.1-py3-none-any.whl", hash = "sha256:421464be390289513f86cb5e18eb43e5dc1de8b4c27ba9faa3b91261b0d67e09"},
 ]
 django-filter = [
     {file = "django-filter-21.1.tar.gz", hash = "sha256:632a251fa8f1aadb4b8cceff932bb52fe2f826dd7dfe7f3eac40e5c463d6836e"},
@@ -1301,6 +1313,10 @@ django-stubs = [
 django-taggit = [
     {file = "django-taggit-2.1.0.tar.gz", hash = "sha256:a9f41e4ad58efe4b28d86f274728ee87eb98eeae90c9eb4b4efad39e5068184e"},
     {file = "django_taggit-2.1.0-py3-none-any.whl", hash = "sha256:61547a23fc99967c9304107414a09e662b459f4163dbbae32e60b8ba40c34d05"},
+]
+django-tailwind = [
+    {file = "django-tailwind-3.4.0.tar.gz", hash = "sha256:b0ea5f2e2e45b86f7165673291323e46200a91cfed99b80278272a49f034c7a4"},
+    {file = "django_tailwind-3.4.0-py3-none-any.whl", hash = "sha256:ce47a28b466e2e427534ee5a8c6f2ee7f7ffb6bce83b55b7ec22be994b293b65"},
 ]
 django-treebeard = [
     {file = "django-treebeard-4.5.1.tar.gz", hash = "sha256:80150017725239702054e5fa64dc66e383dc13ac262c8d47ee5a82cb005969da"},
@@ -1727,8 +1743,8 @@ wagtail-foliage = [
     {file = "wagtail_foliage-0.1.1-py3-none-any.whl", hash = "sha256:027b0551b6f979b0c9ecf14d63c44b4932c56297ac931612e6f59b8ed5f60f3d"},
 ]
 wagtail-markdown = [
-    {file = "wagtail-markdown-0.7.0.tar.gz", hash = "sha256:ea6aaea5ee84a66d25cb66854720fe8d4306730f4edce19afbe57655c5ba9621"},
-    {file = "wagtail_markdown-0.7.0-py2.py3-none-any.whl", hash = "sha256:e1002dfc14514c89002c475789ae4cf4e7fd88439eef47ba60328f49cd69ebe1"},
+    {file = "wagtail-markdown-0.9.0.tar.gz", hash = "sha256:8d42c0d0a82f325ef0311d3014ac3cfc67c2a69208c7c6c9f0989d1c7c4cd2f8"},
+    {file = "wagtail_markdown-0.9.0-py2.py3-none-any.whl", hash = "sha256:68a96e85c8aa5d4567a286bc0a1c507b3638abff8ffb167da63381c2df19d117"},
 ]
 wagtail-metadata = [
     {file = "wagtail-metadata-4.0.0.tar.gz", hash = "sha256:48cbc9dab91cbe2241383e0657e92cc703629e1bc1f8e890ddaf09ffdf65515d"},

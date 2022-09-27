@@ -3,6 +3,8 @@ from __future__ import absolute_import, unicode_literals
 DEBUG = True
 USE_TZ = True
 
+TAILWIND_APP_NAME = "theme"
+
 SECRET_KEY = "very-secret"
 
 ROOT_URLCONF = "tests.urls"
