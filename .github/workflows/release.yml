@@ -57,10 +57,22 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.9
+
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install tox
+          npm install
+
+      - name: Build Tailwind CSS
+        run: |
+          npm run build
+
       - name: Publish pip packages with tox
         run: tox -e release
         env:
