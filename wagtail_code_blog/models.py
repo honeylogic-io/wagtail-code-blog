@@ -5,10 +5,9 @@ from django import forms
 from django.contrib.sites.models import Site
 from django.db import models
 from markdown import markdown
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
-from wagtail.core.models import Page
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.images.models import Image
+from wagtail.models import Page
 from wagtail.search import index
 from wagtail.users.models import UserProfile
 from wagtailmetadata.models import MetadataPageMixin
@@ -47,7 +46,7 @@ class BlogIndexPage(MetadataPageMixin, Page, AuthorNameMixin):
         FieldPanel("heading"),
         FieldPanel("description"),
         FieldPanel("background_color"),
-        ImageChooserPanel("image"),
+        FieldPanel("image"),
     ]
 
     def get_context(self, request):

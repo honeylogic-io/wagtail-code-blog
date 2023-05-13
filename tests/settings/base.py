@@ -15,7 +15,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.sites",
     "django.contrib.staticfiles",
-    # Wagtail dependencies
+    # Wagtail
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
@@ -26,12 +26,10 @@ INSTALLED_APPS = [
     "wagtail.images",
     "wagtail.search",
     "wagtail.admin",
-    "wagtail.core",
-    "wagtailmarkdown",
-    "wagtailmetadata",
-    "modelcluster",
+    "wagtail",
+    # Wagtail dependencies
     "taggit",
-    "django_json_ld",
+    "modelcluster",
     # Our app
     "wagtail_code_blog",
     "tests",
