@@ -4,7 +4,7 @@ build-backend = "poetry.masonry.api"
 
 [tool.poetry]
 name = "wagtail-code-blog"
-version = "0.4.1"
+version = "0.4.2"
 license = "MIT"
 description = "A wagtail code blog"
 authors = ["Dani Hodovic <dani.hodovic@gmail.com>"]
@@ -38,7 +38,7 @@ python = ">=3.9,<4.0"
 wagtail = "5.*"
 wagtail-metadata = "4.*"
 readtime = "^1.1.1"
-beautifulsoup4 = "4.8"
+beautifulsoup4 = "^4"
 django-json-ld = "^0.0.5 "
 django-model-utils = "^4.2.0"
 django = "4.*"
