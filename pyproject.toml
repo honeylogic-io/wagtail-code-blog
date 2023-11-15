@@ -36,7 +36,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
 wagtail = "5.*"
-wagtail-metadata = "4.*"
+wagtail-metadata = "5.*"
 readtime = "^1.1.1"
 beautifulsoup4 = "^4"
 django-json-ld = "^0.0.5 "
