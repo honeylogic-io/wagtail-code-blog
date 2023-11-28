@@ -1,42 +1,43 @@
 {% load wagtailcore_tags wagtailimages_tags %}
-
 {% if page.heading and page.image %}
-<div class="intro-container" style="background: {{ page.background_color }}">
-  <div class="intro">
-    {% image page.image original %}
-    <div class="intro-info">
-      <h1>{{ page.heading }}</h1>
-      <small>{{ page.description }}</small>
+    <div class="intro-container"
+         style="background: {{ page.background_color }}">
+        <div class="intro">
+            {% image page.image original %}
+            <div class="intro-info">
+                <h1>{{ page.heading }}</h1>
+                <small>{{ page.description }}</small>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 {% endif %}
 {% for post in posts %}
-<div class="post">
-  {% if post.image_url %}
-  <a class="img-link" href="{% pageurl post %}">
-    <img src="{{ post.image_url }}" alt="{{ post.title }}">
-  </a>
-  {% endif %}
-  <a class="post-info" href="{% pageurl post %}">
-    <h3 class="post-title">{{ post.title }}</h3>
-    {% if post.intro %}
-    <p class="post-intro-text">{{ post.intro|truncatewords:30 }}</p>
-    {% endif %}
-    <div class="post-content">
-      {% if post.owner.wagtail_userprofile.avatar.url %}
-      <img src="{{ post.owner.wagtail_userprofile.avatar.url }}" alt="Avatar">
-      {% endif %}
-      <div class="post-detail">
-        <p class="post-detail-text"><b>{{ post.author_name }}</b></p>
-        <p class="post-date">{{ post.date }}
-          <span class="post-readtime">{{ post.readtime }}</span>
-        </p>
-      </div>
+    <div class="post flex flex-col lg:flex-row max-w-5xl items-center justify-center mx-auto p-8">
+        {% if post.image_url %}
+            <a class="img-link" href="{% pageurl post %}">
+                <img src="{{ post.image_url }}" alt="{{ post.title }}">
+            </a>
+        {% endif %}
+        <a class="post-info w-full" href="{% pageurl post %}">
+            <p class="text-2xl font-medium">{{ post.title }}</p>
+            {% if post.intro %}<p class="prose mt-2">{{ post.intro|truncatewords:30 }}</p>{% endif %}
+            <div class="flex items-center gap-4 mt-8">
+                {% if post.owner.wagtail_userprofile.avatar.url %}
+                    <img class="avatar w-10 rounded-xl h-auto"
+                         src="{{ post.owner.wagtail_userprofile.avatar.url }}"
+                         alt="Avatar">
+                {% endif %}
+                <div class="w-full">
+                    <p class="text-sm">
+                        <b>{{ post.author_name }}</b>
+                    </p>
+                    <p class="text-sm text-gray-600">
+                        {{ post.date }}
+                        <span class="post-readtime">{{ post.readtime }}</span>
+                    </p>
+                </div>
+            </div>
+        </a>
     </div>
-  </a>
-</div>
-{% if not forloop.last %}
-<hr />
-{% endif %}
+    {% if not forloop.last %}<div class="divider"></div>{% endif %}
 {% endfor %}

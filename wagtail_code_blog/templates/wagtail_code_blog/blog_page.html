@@ -1,16 +1,12 @@
 {% load static %}
 <html>
-
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  {% include "wagtail_code_blog/static_dependencies.html" %}
-  {% include "wagtail_code_blog/blog_page_head.html" %}
-</head>
-
-<body>
-  <div class="flex justify-center">
-  {% include "wagtail_code_blog/blog_page_body.html" %}
-  </div>
-</body>
-
+    <head>
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        {% include "wagtail_code_blog/static_dependencies.html" %}
+        {% include "wagtail_code_blog/blog_page_head.html" %}
+    </head>
+    <body>
+        <div class="flex justify-center">{% include "wagtail_code_blog/blog_page_body.html" %}</div>
+    </body>
 </html>
