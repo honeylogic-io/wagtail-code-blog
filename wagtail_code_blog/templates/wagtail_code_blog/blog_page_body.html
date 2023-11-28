@@ -1,23 +1,27 @@
 {% load wagtailmarkdown %}
-<div class="flex flex-col items-center w-full sm:text-sm md:text-base md:w-10/12 xl:w-9/12 text-stone-800">
-    {% if page.image_url %}<img src="{{ page.image_url }}" alt="Image">{% endif %}
-    <h1 class="mt-4 text-xl font-semibold tracking-tighter text-center md:text-5xl">{{ page.title }}</h1>
-    <div class="flex justify-end mt-4 mb-4 md:w-10/12 xl:w-8/12">
-        <div class="flex items-center mr-3 md:mr-20">
-            <div class="flex flex-col items-center justify-center my-6 ">
-                <span class="text-xs font-semibold md:text-base">{{ page.author_name }}</span>
-                <span class="text-xs md:text-sm text-stone-500">{{ page.date }}</span>
-                <span class="text-xs md:text-sm text-stone-500">{{ page.readtime }}</span>
-            </div>
-            {% if author_image %}
-                <div class="ml-3">
-                    <img src="{{ author_image }}"
-                         class="object-scale-down w-8 rounded-2xl md:w-16 xl:w-20"
-                         alt="Responsive image">
+<div class="flex flex-row justify-center text-stone-800 mt-20">
+    <div class="flex flex-col justify-center items-center basis-10/12 lg:!basis-8/12">
+        {% if page.image_url %}<img src="{{ page.image_url }}" alt="Image">{% endif %}
+        <p class="text-xl lg:!text-4xl font-semibold mt-10">{{ page.title }}</p>
+        <div class="flex justify-end mt-5 mb-5">
+            <div class="flex items-center">
+                <div class="flex flex-col items-center justify-center my-6">
+                    <span class="text-xs font-semibold md:text-base">{{ page.author_name }}</span>
+                    <span class="text-xs md:text-sm text-stone-500">{{ page.date }}</span>
+                    <span class="text-xs md:text-sm text-stone-500">{{ page.readtime }}</span>
                 </div>
-            {% endif %}
+                {% if author_image %}
+                    <div class="ml-3">
+                        <img src="{{ author_image }}"
+                             class="object-scale-down w-8 rounded-2xl md:w-16 xl:w-20"
+                             alt="Responsive image">
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid grid-cols-1">
+            <article class="prose mt-5">{{ page.body|markdown }}</article>
         </div>
     </div>
-    <hr class="w-10/12 mb-4 border-b-2 md:w-8/12">
-    <div class="flex flex-col justify-center font-sans prose">{{ page.body|markdown }}</div>
 </div>
