@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "wagtail-code-blog"
-version = "0.5.1"
+version = "0.5.2"
 license = "MIT"
 description = "A wagtail code blog"
 authors = ["Dani Hodovic <dani.hodovic@gmail.com>"]
