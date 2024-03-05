@@ -68,3 +68,8 @@ TEMPLATES = [
 STATIC_URL = "/static/"
 SITE_ID = 1
 WAGTAIL_SITE_NAME = "My Example Site"
+WAGTAILADMIN_BASE_URL = "https://test.com"
+
+SECRET_KEY = "very-secret"
+
+DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}}

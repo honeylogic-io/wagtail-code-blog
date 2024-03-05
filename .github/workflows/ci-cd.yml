@@ -1,11 +1,10 @@
----
 name: CI/CD
 
-on:  # yamllint disable-line rule:truthy
+on: # yamllint disable-line rule:truthy
   pull_request:
-    branches: [ "master", "main" ]
+    branches: ["master", "main"]
   push:
-    branches: [ "master", "main" ]
+    branches: ["master", "main"]
   release:
     types: [published]
 
@@ -14,12 +13,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v1
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.9
+          python-version: "3.11"
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.5.1
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
 
       - name: Install dependencies
         run: |
@@ -40,14 +47,14 @@ jobs:
     strategy:
       max-parallel: 3
       matrix:
-        python-version: [3.9]
-        dj-version: [django40]
+        python-version: ["3.11"]
+        dj-version: [django50]
     steps:
 
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -61,15 +68,6 @@ jobs:
           PY_VERSION=${{ matrix.python-version }} &&
           tox -e py${PY_VERSION//.}-${{ matrix.dj-version }}
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage.xml
-          flags: unittests
-          name: ${{ matrix.python-version }}-${{ matrix.dj-version }}
-          yml: ./codecov.yml
-
   release:
     name: Release
     runs-on: ubuntu-latest
@@ -79,12 +77,12 @@ jobs:
       - lint
       - test
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v1
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.9
+          python-version: "3.11"
 
       - name: Use Node.js 16
         uses: actions/setup-node@v3
