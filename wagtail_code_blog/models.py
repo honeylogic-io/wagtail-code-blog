@@ -28,7 +28,9 @@ class AuthorNameMixin(models.Model):
         auto_created = True
 
 
-class BlogIndexPage(MetadataPageMixin, Page, AuthorNameMixin):
+class BlogIndexPage(
+    MetadataPageMixin, Page, AuthorNameMixin
+):  # pylint: disable=too-many-ancestors
     page_ptr = models.OneToOneField(
         Page, parent_link=True, related_name="+", on_delete=models.CASCADE
     )
@@ -57,7 +59,9 @@ class BlogIndexPage(MetadataPageMixin, Page, AuthorNameMixin):
         return ctx
 
 
-class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):
+class BlogPage(
+    MetadataPageMixin, Page, AuthorNameMixin
+):  # pylint: disable=too-many-ancestors
     page_ptr = models.OneToOneField(
         Page, parent_link=True, related_name="+", on_delete=models.CASCADE
     )

@@ -1,3 +1,4 @@
+# pylint: disable=ungrouped-imports,wrong-import-position
 from django.apps import AppConfig
 
 
