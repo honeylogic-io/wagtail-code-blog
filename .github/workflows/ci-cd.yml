@@ -12,7 +12,6 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-
       - uses: actions/checkout@v4
 
       - name: Install uv
@@ -39,7 +38,6 @@ jobs:
         python-version: ["3.12", "3.13"]
         dj-version: [django52, django60]
     steps:
-
       - uses: actions/checkout@v4
 
       - name: Install uv
@@ -62,6 +60,10 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
+      contents: read
     if: github.event_name == 'release'
     needs:
       - lint
