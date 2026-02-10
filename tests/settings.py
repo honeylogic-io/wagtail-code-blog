@@ -1,5 +1,3 @@
-from __future__ import absolute_import, unicode_literals
-
 DEBUG = True
 USE_TZ = True
 
@@ -66,6 +64,7 @@ TEMPLATES = [
 ]
 
 STATIC_URL = "/static/"
+STATIC_ROOT = "staticfiles"
 SITE_ID = 1
 WAGTAIL_SITE_NAME = "My Example Site"
 WAGTAILADMIN_BASE_URL = "https://test.com"

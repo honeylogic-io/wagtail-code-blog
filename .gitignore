@@ -112,3 +112,4 @@ dmypy.json
 db.sqlite3
 node_modules
 wagtail_code_blog/static/wagtail_code_blog/output.css
+staticfiles
