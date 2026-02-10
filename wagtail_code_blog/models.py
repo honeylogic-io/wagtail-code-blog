@@ -1,4 +1,6 @@
 # pylint: disable=arguments-differ,too-few-public-methods
+from typing import TYPE_CHECKING
+
 import readtime
 from bs4 import BeautifulSoup
 from django import forms
@@ -9,8 +11,10 @@ from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.images.models import Image
 from wagtail.models import Page
 from wagtail.search import index
-from wagtail.users.models import UserProfile
 from wagtailmetadata.models import MetadataPageMixin
+
+if TYPE_CHECKING:
+    from wagtail.users.models import UserProfile  # noqa: F401
 
 default_author = "John Doe"
 
@@ -28,9 +32,7 @@ class AuthorNameMixin(models.Model):
         auto_created = True
 
 
-class BlogIndexPage(
-    MetadataPageMixin, Page, AuthorNameMixin
-):  # pylint: disable=too-many-ancestors
+class BlogIndexPage(MetadataPageMixin, Page, AuthorNameMixin):  # pylint: disable=too-many-ancestors
     page_ptr = models.OneToOneField(
         Page, parent_link=True, related_name="+", on_delete=models.CASCADE
     )
@@ -59,9 +61,7 @@ class BlogIndexPage(
         return ctx
 
 
-class BlogPage(
-    MetadataPageMixin, Page, AuthorNameMixin
-):  # pylint: disable=too-many-ancestors
+class BlogPage(MetadataPageMixin, Page, AuthorNameMixin):  # pylint: disable=too-many-ancestors
     page_ptr = models.OneToOneField(
         Page, parent_link=True, related_name="+", on_delete=models.CASCADE
     )

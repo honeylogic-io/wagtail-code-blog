@@ -8,6 +8,6 @@ class WagtailBlogConfig(AppConfig):
     def ready(self):
         try:
             # pylint: disable=unused-import,import-outside-toplevel
-            import wagtail_code_blog.signals
+            import wagtail_code_blog.signals  # noqa: F401
         except ImportError:
             pass
