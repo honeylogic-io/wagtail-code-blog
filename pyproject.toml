@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "wagtail-code-blog"
-version = "0.6.0"
+version = "0.6.1"
 description = "A wagtail code blog"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -62,9 +62,16 @@ Homepage = "https://github.com/honeylogic-io/wagtail-code-blog"
 Documentation = "https://github.com/honeylogic-io/wagtail-code-blog"
 Repository = "https://github.com/honeylogic-io/wagtail-code-blog"
 
+[tool.uv]
+package = false
+
 [tool.hatch.build.targets.wheel]
 packages = ["wagtail_code_blog"]
-artifacts = ["wagtail_code_blog/static", "wagtail_code_blog/templates"]
+artifacts = ["wagtail_code_blog/static/**", "wagtail_code_blog/templates/**"]
+force-include = { "wagtail_code_blog/static/wagtail_code_blog/output.css" = "wagtail_code_blog/static/wagtail_code_blog/output.css" }
+
+[tool.hatch.build.targets.sdist]
+force-include = { "wagtail_code_blog/static/wagtail_code_blog/output.css" = "wagtail_code_blog/static/wagtail_code_blog/output.css" }
 
 [tool.pytest.ini_options]
 addopts = "--ds=tests.settings --reuse-db --pdbcls=pudb.debugger:Debugger"

@@ -1,3 +1,4 @@
 include README.md
 include LICENSE
 recursive-include wagtail_code_blog/migrations *
+include wagtail_code_blog/static/wagtail_code_blog/output.css
