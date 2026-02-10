@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "wagtail-code-blog"
-version = "0.6.1"
+version = "0.6.2"
 description = "A wagtail code blog"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -68,9 +68,11 @@ package = false
 [tool.hatch.build.targets.wheel]
 packages = ["wagtail_code_blog"]
 artifacts = ["wagtail_code_blog/static/**", "wagtail_code_blog/templates/**"]
+exclude = ["wagtail_code_blog/static/wagtail_code_blog/input.css"]
 force-include = { "wagtail_code_blog/static/wagtail_code_blog/output.css" = "wagtail_code_blog/static/wagtail_code_blog/output.css" }
 
 [tool.hatch.build.targets.sdist]
+exclude = ["wagtail_code_blog/static/wagtail_code_blog/input.css"]
 force-include = { "wagtail_code_blog/static/wagtail_code_blog/output.css" = "wagtail_code_blog/static/wagtail_code_blog/output.css" }
 
 [tool.pytest.ini_options]
