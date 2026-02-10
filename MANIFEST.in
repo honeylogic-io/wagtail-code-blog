@@ -1,5 +1,3 @@
 include README.md
 include LICENSE
-recursive-include wagtail_code_blog/static *
-recursive-include wagtail_code_blog/templates *
 recursive-include wagtail_code_blog/migrations *
