@@ -1,33 +1,33 @@
 {
-  "devDependencies": {
-    "@tailwindcss/aspect-ratio": "^0.4.0",
-    "@tailwindcss/forms": "^0.4.0",
-    "@tailwindcss/line-clamp": "^0.3.1",
-    "@tailwindcss/typography": "^0.5.1",
-    "daisyui": "^4.4.13",
-    "tailwind": "^4.0.0",
-    "tailwindcss": "^3.0.19"
-  },
   "name": "wagtail-code-blog",
-  "description": "Built with wagtail-code-blog:",
-  "version": "0.0.1",
-  "main": "tailwind.config.js",
-  "directories": {
-    "test": "tests"
-  },
+  "version": "0.6.0",
+  "description": "Built with wagtail-code-blog",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tailwindcss -i wagtail_code_blog/static/wagtail_code_blog/input.css -o wagtail_code_blog/static/wagtail_code_blog/output.css --minify",
-    "build:watch": "npx tailwindcss -i wagtail_code_blog/static/wagtail_code_blog/input.css -o wagtail_code_blog/static/wagtail_code_blog/output.css --watch"
+    "start": "npm run dev",
+    "build": "npm run build:clean && npm run build:tailwind",
+    "build:clean": "rimraf ./wagtail_code_blog/static/wagtail_code_blog/output.css",
+    "build:tailwind": "NODE_ENV=production npx @tailwindcss/cli --postcss -i ./wagtail_code_blog/static/wagtail_code_blog/input.css -o ./wagtail_code_blog/static/wagtail_code_blog/output.css --minify",
+    "dev": "NODE_ENV=development npx @tailwindcss/cli --postcss -i ./wagtail_code_blog/static/wagtail_code_blog/input.css -o ./wagtail_code_blog/static/wagtail_code_blog/output.css -w"
   },
+  "keywords": ["wagtail", "django", "blog", "cms"],
+  "author": "Dani Hodovic <dani.hodovic@gmail.com>",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/honeylogic-io/wagtail-code-blog.git"
   },
-  "author": "",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/honeylogic-io/wagtail-code-blog/issues"
   },
-  "homepage": "https://github.com/honeylogic-io/wagtail-code-blog#readme"
+  "homepage": "https://github.com/honeylogic-io/wagtail-code-blog#readme",
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/cli": "^4.0.17",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/postcss": "^4.0.17",
+    "rimraf": "^6.0.1",
+    "tailwindcss": "^4.0.17",
+    "daisyui": "^5.0.9"
+  }
 }

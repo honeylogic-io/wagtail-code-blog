@@ -66,6 +66,7 @@ TEMPLATES = [
 ]
 
 STATIC_URL = "/static/"
+STATIC_ROOT = "staticfiles"
 SITE_ID = 1
 WAGTAIL_SITE_NAME = "My Example Site"
 WAGTAILADMIN_BASE_URL = "https://test.com"
