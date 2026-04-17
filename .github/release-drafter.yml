@@ -1,48 +1,45 @@
 ---
-name-template: '$RESOLVED_VERSION'
-tag-template: '$RESOLVED_VERSION'
+name-template: "$RESOLVED_VERSION"
+tag-template: "$RESOLVED_VERSION"
 categories:
-  - title: 'Features'
+  - title: "Features"
     labels:
-      - 'feat'
-  - title: 'Bug Fixes'
+      - "feat"
+  - title: "Bug Fixes"
     labels:
-      - 'fix'
-      - 'revert'
-  - title: 'Maintenance'
+      - "fix"
+      - "revert"
+  - title: "Maintenance"
     labels:
-      - 'build'
-      - 'chore'
-      - 'ci'
-      - 'docs'
-      - 'style'
-      - 'refactor'
-      - 'perf'
-      - 'test'
-  - title: 'Wario Client'
-    labels:
-      - api-client
-change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+      - "build"
+      - "chore"
+      - "ci"
+      - "docs"
+      - "style"
+      - "refactor"
+      - "perf"
+      - "test"
+change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 version-resolver:
   major:
     labels:
-      - 'major'
+      - "major"
   minor:
     labels:
-      - 'feat'
+      - "feat"
   patch:
     labels:
-      - 'fix'
-      - 'build'
-      - 'chore'
-      - 'ci'
-      - 'docs'
-      - 'style'
-      - 'refactor'
-      - 'perf'
-      - 'test'
-      - 'revert'
+      - "fix"
+      - "build"
+      - "chore"
+      - "ci"
+      - "docs"
+      - "style"
+      - "refactor"
+      - "perf"
+      - "test"
+      - "revert"
   default: patch
 template: |
   ## Changes
@@ -50,42 +47,39 @@ template: |
   $CHANGES
 
 autolabeler:
-  - label: 'major'
+  - label: "major"
     body:
-      - '/BREAKING CHANGE.*/'
-  - label: 'feat'
+      - "/BREAKING CHANGE.*/"
+  - label: "feat"
     title:
-      - '/^feat.*: .*/'
-  - label: 'fix'
+      - "/^feat.*: .*/"
+  - label: "fix"
     title:
-      - '/^fix.*: .*/'
-  - label: 'chore'
+      - "/^fix.*: .*/"
+  - label: "chore"
     title:
-      - '/^chore.*:.*/'
-  - label: 'ci'
+      - "/^chore.*:.*/"
+  - label: "ci"
     title:
-      - '/^ci.*:.*/'
-  - label: 'build'
+      - "/^ci.*:.*/"
+  - label: "build"
     title:
-      - '/^build.*:.*/'
-  - label: 'style'
+      - "/^build.*:.*/"
+  - label: "style"
     title:
-      - '/^style.*:.*/'
-  - label: 'refactor'
+      - "/^style.*:.*/"
+  - label: "refactor"
     title:
-      - '/^refactor.*:.*/'
-  - label: 'perf'
+      - "/^refactor.*:.*/"
+  - label: "perf"
     title:
-      - '/^perf.*:.*/'
-  - label: 'test'
+      - "/^perf.*:.*/"
+  - label: "test"
     title:
-      - '/^test.*:.*/'
-  - label: 'docs'
+      - "/^test.*:.*/"
+  - label: "docs"
     title:
-      - '/^docs.*:.*/'
-  - label: 'revert'
+      - "/^docs.*:.*/"
+  - label: "revert"
     title:
-      - '/^revert.*:.*/'
-  - label: 'api-client'
-    files:
-      - 'wario_client/*'
+      - "/^revert.*:.*/"

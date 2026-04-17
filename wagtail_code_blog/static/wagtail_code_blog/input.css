@@ -1,5 +1,18 @@
 @import "tailwindcss" source("../../templates/**/*.html");
 @plugin "@tailwindcss/typography";
-@plugin "@tailwindcss/forms";
-@plugin "@tailwindcss/aspect-ratio";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default;
+  /* Avoid DaisyUI's unused radial-progress CSS, which triggers an @property warning in this build pipeline. */
+  exclude: properties, radialprogress;
+}
+
+@layer base {
+  body {
+    @apply antialiased;
+    font-family: "Plus Jakarta Sans", var(--font-sans);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
