@@ -2,4 +2,18 @@
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/aspect-ratio";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default;
+  exclude: properties, radialprogress;
+}
+
+@layer base {
+  body {
+    @apply antialiased;
+    font-family: "Plus Jakarta Sans", var(--font-sans);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}

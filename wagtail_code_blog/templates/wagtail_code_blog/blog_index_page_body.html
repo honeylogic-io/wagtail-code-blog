@@ -1,43 +1,112 @@
-{% load wagtailcore_tags wagtailimages_tags %}
-{% if page.heading and page.image %}
-    <div class="intro-container"
-         style="background: {{ page.background_color }}">
-        <div class="intro">
-            {% image page.image original %}
-            <div class="intro-info">
-                <h1>{{ page.heading }}</h1>
-                <small>{{ page.description }}</small>
-            </div>
-        </div>
-    </div>
-{% endif %}
-{% for post in posts %}
-    <div class="post flex flex-col lg:flex-row max-w-5xl items-center justify-center mx-auto p-8">
-        {% if post.image_url %}
-            <a class="img-link" href="{% pageurl post %}">
-                <img src="{{ post.image_url }}" alt="{{ post.title }}">
-            </a>
-        {% endif %}
-        <a class="post-info w-full" href="{% pageurl post %}">
-            <p class="text-2xl font-medium">{{ post.title }}</p>
-            {% if post.intro %}<p class="prose mt-2">{{ post.intro|truncatewords:30 }}</p>{% endif %}
-            <div class="flex items-center gap-4 mt-8">
-                {% if post.owner.wagtail_userprofile.avatar.url %}
-                    <img class="avatar w-10 rounded-xl h-auto"
-                         src="{{ post.owner.wagtail_userprofile.avatar.url }}"
-                         alt="Avatar">
-                {% endif %}
-                <div class="w-full">
-                    <p class="text-sm">
-                        <b>{{ post.author_name }}</b>
-                    </p>
-                    <p class="text-sm text-gray-600">
-                        {{ post.date }}
-                        <span class="post-readtime">{{ post.readtime }}</span>
-                    </p>
+{% load wagtailcore_tags wagtailimages_tags wagtailmarkdown %}
+<div data-theme="light" {% if page.background_color %}style="background: {{ page.background_color }}"{% endif %}>
+    <main class="mx-auto w-full max-w-6xl px-4 py-6 pb-20 sm:px-6 sm:pb-24 lg:px-8 lg:py-10 lg:pb-28">
+        <section class="border-y border-base-300/70 py-16 sm:py-20 lg:py-24">
+            <div class="mx-auto grid max-w-6xl items-center gap-10 {% if page.image %}sm:grid-cols-[minmax(0,1fr)_28rem]{% endif %}">
+                <div class="{% if not page.image %}mx-auto max-w-4xl text-center{% else %}max-w-4xl{% endif %}">
+                    <h1 class="text-5xl font-semibold tracking-tight text-base-content sm:text-6xl lg:text-7xl">
+                        {% if page.heading %}
+                            {{ page.heading }}
+                        {% else %}
+                            {{ page.title }}
+                        {% endif %}
+                    </h1>
+                    {% if page.description %}
+                        <p class="mt-8 text-lg leading-10 text-base-content/72 sm:text-xl {% if not page.image %}mx-auto max-w-3xl{% else %}max-w-3xl{% endif %}">{{ page.description }}</p>
+                    {% endif %}
                 </div>
+
+                {% if page.image %}
+                    <div>
+                        {% image page.image original class="aspect-[4/3] w-full rounded-box object-cover" %}
+                    </div>
+                {% endif %}
             </div>
-        </a>
-    </div>
-    {% if not forloop.last %}<div class="divider"></div>{% endif %}
-{% endfor %}
+        </section>
+
+        <section class="space-y-2 pt-10 sm:pt-12">
+            <h2 class="text-sm font-medium uppercase tracking-[0.2em] text-base-content/55">Latest posts</h2>
+            <div class="divider my-0"></div>
+        </section>
+
+        {% for post in posts %}
+            <article class="mx-auto grid max-w-6xl gap-6 border-y border-base-300/70 py-8 sm:grid-cols-[minmax(20rem,30rem)_minmax(0,1fr)] sm:items-stretch sm:gap-8 sm:py-10">
+                {% if post.image_url %}
+                    <a href="{% pageurl post %}" class="block h-full w-full overflow-hidden rounded-box">
+                        <img src="{{ post.image_url }}"
+                             alt="{{ post.title }}"
+                             class="aspect-[16/9] h-full w-full object-cover" />
+                    </a>
+                {% else %}
+                    <div class="hidden sm:block"></div>
+                {% endif %}
+                <div class="flex h-full w-full flex-col justify-between gap-6 sm:px-6">
+                    <div>
+                        <a href="{% pageurl post %}" class="block">
+                            <p class="text-2xl font-medium">{{ post.title }}</p>
+                        </a>
+                        {% if post.intro %}<div class="prose mt-2 max-w-none">{{ post.intro|markdown|truncatewords_html:30 }}</div>{% endif %}
+                    </div>
+                    <div class="mt-auto flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            {% if post.owner.wagtail_userprofile.avatar.url %}
+                                <img class="h-10 w-10 rounded-xl object-cover"
+                                     src="{{ post.owner.wagtail_userprofile.avatar.url }}"
+                                     alt="{{ post.author_name }} avatar">
+                            {% endif %}
+                            <div class="w-full">
+                                <p class="text-sm">
+                                    <b>{{ post.author_name }}</b>
+                                </p>
+                                <p class="flex flex-wrap items-center gap-2 text-sm text-gray-600">
+                                    <span>{{ post.date }}</span>
+                                    <span class="hidden sm:inline">/</span>
+                                    <span>{{ post.readtime }}</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <a class="btn btn-ghost btn-sm" href="{% pageurl post %}">Read here</a>
+                            {% if post.canonical_url %}
+                                <a class="btn btn-outline btn-sm"
+                                   href="{{ post.canonical_url }}"
+                                   target="_blank"
+                                   rel="noopener noreferrer">Original post</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </article>
+        {% empty %}
+            <div class="mx-auto max-w-6xl py-16 text-center text-base-content/60">
+                <p class="text-lg font-medium text-base-content">No posts published yet.</p>
+            </div>
+        {% endfor %}
+
+        {% if is_paginated %}
+            <div class="mx-auto mt-14 flex max-w-6xl justify-center px-8 md:mt-16">
+                <nav class="join" aria-label="Pagination">
+                    {% if page_obj.has_previous %}
+                        <a class="join-item btn" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                    {% else %}
+                        <button class="join-item btn btn-disabled" type="button">Previous</button>
+                    {% endif %}
+
+                    {% for num in paginator.page_range %}
+                        {% if num == page_obj.number %}
+                            <button class="join-item btn btn-active" type="button">{{ num }}</button>
+                        {% elif num >= page_obj.number|add:-2 and num <= page_obj.number|add:2 %}
+                            <a class="join-item btn" href="?page={{ num }}">{{ num }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <a class="join-item btn" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    {% else %}
+                        <button class="join-item btn btn-disabled" type="button">Next</button>
+                    {% endif %}
+                </nav>
+            </div>
+        {% endif %}
+    </main>
+</div>
